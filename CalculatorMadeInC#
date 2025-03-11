@@ -1,0 +1,61 @@
+using System;
+
+namespace MyfirstProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            do
+            {
+                double num1 = 0;
+                double num2 = 0; //INPUT BASE NUMBERS
+                double result = 0;
+
+                Console.WriteLine("--------------------");
+                Console.WriteLine(" Calculator Program ");  //STARTING MENU
+                Console.WriteLine("--------------------");
+
+                Console.Write("Enter Number One: ");   // INPUT NUMBER ONE
+                num1 = Convert.ToDouble(Console.ReadLine());
+ 
+                Console.Write("Enter Number Two: ");          // INPUT NUMBER TWO
+                num2 = Convert.ToDouble(Console.ReadLine());
+
+                Console.WriteLine("Enter An Option: ");
+                Console.WriteLine("\t '+' = Add ");
+                Console.WriteLine("\t '-' = Subtract ");          // SELECTION MENU
+                Console.WriteLine("\t '/' = Divide ");
+                Console.WriteLine("\t '*' = Multiply ");
+                Console.Write("Enter: ");
+                switch (Console.ReadLine())                               //CASE SWTICHES BASED ON INPUT
+                {
+                    case "+":
+                        result = num1 + num2;
+                        Console.WriteLine($"Your Result: {num1} + {num2} = " + result); // FOR ADddition
+                        break;
+                    case "-":
+                        result = num1 - num2;
+                        Console.WriteLine($"Your Result: {num1} - {num2} = " + result); // FOR Subtraction
+                        break;
+                    case "/":
+                        result = num1 / num2;
+                        Console.WriteLine($"Your Result: {num1} / {num2} = " + result); // FOR Divide
+                        break;
+                    case "*":
+                        result = num1 * num2;
+                        Console.WriteLine($"Your Result: {num1} * {num2} = " + result); // FOR Multiplication
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input");
+                        break;
+                }
+                Console.WriteLine("Would You like to Continue: (Y/N)"); //Restart Menu
+            } while (Console.ReadLine().ToUpper() == "Y"); //Check If user wants to play again 
+            Console.WriteLine("BYE");
+            Console.ReadKey();
+        }
+    }
+}
+
+           
