@@ -1,0 +1,45 @@
+using System;
+
+namespace MyFirstProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double a;
+            double b;
+            double c;
+            double d;
+            String Continue;
+
+            Console.WriteLine("please enter number one");
+            a = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("please enter number two");
+            b = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("would u like to add a number (Y/N)");
+            Continue = Console.ReadLine().ToUpper();
+            if (Continue == "Y")
+            {
+                Console.WriteLine("please enter number Three");
+                c = Convert.ToDouble(Console.ReadLine());
+                d = MUlTTIPLYOVERLOADTEST(a, b, c);
+                Console.WriteLine(d);
+            }
+            else {
+                d = MUlTTIPLYOVERLOADTEST(a, b);
+                Console.WriteLine(d);
+            }
+
+            
+            Console.ReadKey();
+        }
+        static double MUlTTIPLYOVERLOADTEST(double Numberone, double NumberTwo) 
+        {
+            return Numberone * NumberTwo;
+        }
+        static double MUlTTIPLYOVERLOADTEST(double Numberone, double NumberTwo, double NumberThree)
+        {
+            return Numberone * NumberTwo * NumberThree;
+        }
+    }
+}
