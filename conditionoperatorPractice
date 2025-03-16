@@ -1,0 +1,35 @@
+using System;
+
+namespace MyFirstProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Array of available skins
+            string[] skins = { "SKIN 1", "SKIN 2", "SKIN 3" };
+
+            Console.WriteLine("What skin would you like today?");
+
+            // Display available skins with index numbers
+            for (int i = 0; i < skins.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}: {skins[i]}");
+            }
+
+            Console.Write("Enter the number of your choice: ");
+            int choice;
+
+            // Try parsing user input
+            bool isValid = int.TryParse(Console.ReadLine(), out choice);
+
+            // Use ternary operator to validate choice
+            string msg = (isValid && choice >= 1 && choice <= skins.Length)
+                ? $"You have selected {skins[choice - 1]}!"
+                : "Invalid choice! Please pick a valid number next time.";
+
+            Console.WriteLine(msg);
+            Console.ReadKey();
+        }
+    }
+}
