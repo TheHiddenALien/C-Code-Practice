@@ -1,0 +1,77 @@
+// Program.cs
+using System;
+
+namespace MyfirstProgram
+{
+    class Program
+    {
+        // Main method - entry point of the application
+        static void Main(string[] args)
+        {
+            // Create a new Human object
+            Human human1 = new Human();
+
+            // Prompt the user to input a name for the pet
+            Console.WriteLine("What would you like to name your Pet:");
+            human1.name = Console.ReadLine();  // Read user input for the pet's name
+
+            // Ask the user for the pet's age
+            Console.WriteLine($"How old is {human1.name}");
+            human1.age = Convert.ToInt32(Console.ReadLine());  // Convert input to an integer for the pet's age
+
+            // Ask if the user wants to feed the pet
+            Console.WriteLine($"Would you like to Feed {human1.name}(Y/N)");
+            String Awnser = Console.ReadLine().ToUpper();  // Get user input and convert to uppercase
+
+            // Conditional logic based on user input
+            if (Awnser == "Y")
+            {
+                // If the user says "Y", the pet eats
+                human1.Eat();
+            }
+            else if (Awnser == "N")
+            {
+                // If the user says "N", the pet sleeps
+                human1.Sleep();
+            }
+            else 
+            {
+                // If the input is anything other than "Y" or "N", show an error message
+                Console.WriteLine("I didn't get that");
+            }
+
+            // Wait for the user to press a key before closing the application
+            Console.ReadKey();
+        }
+    }
+}
+
+
+========================================================================================================================================================================================================================
+// Human.cs
+using System;
+
+namespace MyfirstProgram
+{
+    // Define the 'Human' class
+    public class Human
+    {
+        // Declare properties of the Human class
+        public string name;  // The name of the human (using lowercase 'string')
+        public int age;      // The age of the human
+
+        // Method to simulate eating
+        public void Eat() 
+        {
+            // Output a message indicating that the human is eating
+            Console.WriteLine($"{name} is eating");
+        }
+
+        // Method to simulate sleeping
+        public void Sleep()
+        {
+            // Output a message indicating that the human is sleeping
+            Console.WriteLine($"{name} is sleeping");
+        }
+    }
+}
