@@ -1,0 +1,104 @@
+using System;
+
+
+namespace MyfirstProgram
+{
+    // Base class (Parent)
+    class Character
+    {
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public int AttackPower { get; set; }
+
+        public Character(string name, int health, int attackPower)
+        {
+            Name = name;
+            Health = health;
+            AttackPower = attackPower;
+        }
+
+        // Method for attacking
+        public virtual void Attack(Character target)
+        {
+            Console.WriteLine($"{Name} attacks {target.Name} for {AttackPower} damage!");
+            target.Health -= AttackPower;
+        }
+
+        // Check if character is alive
+        public bool IsAlive()
+        {
+            return Health > 0;
+        }
+    }
+
+    // Derived class (Child) - Player
+    class Player : Character
+    {
+        public Player(string name) : base(name, 100, 20) { }
+
+        // Player has a special move
+        public void SpecialAttack(Character target)
+        {
+            Console.WriteLine($"{Name} performs a Special Attack on {target.Name} for {AttackPower * 2} damage!");
+            target.Health -= AttackPower * 2;
+        }
+    }
+
+    // Derived class (Child) - Enemy
+    class Enemy : Character
+    {
+        public Enemy(string name) : base(name, 80, 15) { }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your player name:");
+            string playerName = Console.ReadLine();
+
+            // Create a player and an enemy
+            Player player = new Player(playerName);
+            Enemy enemy = new Enemy("Dark Warrior");
+
+            Console.WriteLine($"\n{player.Name} vs {enemy.Name} - Battle Begins!\n");
+
+            // Battle loop
+            while (player.IsAlive() && enemy.IsAlive())
+            {
+                Console.WriteLine($"Your Health: {player.Health}, Enemy Health: {enemy.Health}");
+                Console.WriteLine("Choose an action: 1) Normal Attack  2) Special Attack");
+                string choice = Console.ReadLine();
+
+                if (choice == "1")
+                {
+                    player.Attack(enemy);
+                }
+                else if (choice == "2")
+                {
+                    player.SpecialAttack(enemy);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice! You missed your turn.");
+                }
+
+                // Enemy attacks back if still alive
+                if (enemy.IsAlive())
+                {
+                    enemy.Attack(player);
+                }
+
+                Console.WriteLine();
+            }
+
+            // Determine winner
+            if (player.IsAlive())
+                Console.WriteLine($"You defeated {enemy.Name}! You win!");
+            else
+                Console.WriteLine($"You have been defeated by {enemy.Name}. Game Over.");
+
+            Console.ReadKey(); // Keep console open
+        }
+    }
+}
