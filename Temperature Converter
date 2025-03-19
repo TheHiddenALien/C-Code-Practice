@@ -1,0 +1,114 @@
+using System;
+
+namespace TemperatureConverter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool isRunning = true;
+            Console.WriteLine("Welcome to the Temperature Converter!");
+
+            while (isRunning)
+            {
+                // Display menu
+                Console.WriteLine("\nSelect a conversion type:");
+                Console.WriteLine("1. Celsius to Fahrenheit");
+                Console.WriteLine("2. Celsius to Kelvin");
+                Console.WriteLine("3. Fahrenheit to Celsius");
+                Console.WriteLine("4. Fahrenheit to Kelvin");
+                Console.WriteLine("5. Kelvin to Celsius");
+                Console.WriteLine("6. Kelvin to Fahrenheit");
+                Console.WriteLine("7. Exit");
+
+                // Get user choice
+                Console.Write("Enter your choice (1-7): ");
+                string choice = Console.ReadLine();
+
+                double input, result; // Declare input and result variables
+
+                switch (choice)
+                {
+                    case "1": // Celsius to Fahrenheit
+                        Console.Write("Enter temperature in Celsius: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = (input * 9 / 5) + 32;
+                            Console.WriteLine($"{input}°C = {result:F2}°F");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a number.");
+                        break;
+
+                    case "2": // Celsius to Kelvin
+                        Console.Write("Enter temperature in Celsius: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = input + 273.15;
+                            Console.WriteLine($"{input}°C = {result:F2}K");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a number.");
+                        break;
+
+                    case "3": // Fahrenheit to Celsius
+                        Console.Write("Enter temperature in Fahrenheit: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = (input - 32) * 5 / 9;
+                            Console.WriteLine($"{input}°F = {result:F2}°C");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a number.");
+                        break;
+
+                    case "4": // Fahrenheit to Kelvin
+                        Console.Write("Enter temperature in Fahrenheit: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = (input - 32) * 5 / 9 + 273.15;
+                            Console.WriteLine($"{input}°F = {result:F2}K");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a number.");
+                        break;
+
+                    case "5": // Kelvin to Celsius
+                        Console.Write("Enter temperature in Kelvin: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = input - 273.15;
+                            Console.WriteLine($"{input}K = {result:F2}°C");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a number.");
+                        break;
+
+                    case "6": // Kelvin to Fahrenheit
+                        Console.Write("Enter temperature in Kelvin: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = (input - 273.15) * 9 / 5 + 32;
+                            Console.WriteLine($"{input}K = {result:F2}°F");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a number.");
+                        break;
+
+                    case "7": // Exit
+                        isRunning = false;
+                        Console.WriteLine("Thank you for using the Temperature Converter. Goodbye!");
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 7.");
+                        break;
+                }
+            }
+
+            // Keep the console open
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
