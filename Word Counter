@@ -1,0 +1,42 @@
+using System;
+
+namespace WordCounter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool isRunning = true;
+
+            Console.WriteLine("Welcome to the Word Counter!");
+
+            while (isRunning)
+            {
+                Console.WriteLine("\nEnter a sentence or paragraph (or type 'exit' to quit):");
+                string input = Console.ReadLine().Trim();
+
+                if (input.ToLower() == "exit")
+                {
+                    isRunning = false;
+                    Console.WriteLine("Goodbye! ");
+                    continue;
+                }
+
+                int wordCount = CountWords(input);
+                Console.WriteLine($" Word Count: {wordCount}");
+            }
+
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
+
+        static int CountWords(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return 0;
+
+            string[] words = text.Split(new char[] { ' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            return words.Length;
+        }
+    }
+}
