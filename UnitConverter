@@ -1,0 +1,114 @@
+using System;
+
+namespace UnitConverter
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool isRunning = true;
+            Console.WriteLine("Welcome to the Unit Converter!");
+
+            while (isRunning)
+            {
+                // Display menu options
+                Console.WriteLine("\nPlease select a conversion type:");
+                Console.WriteLine("1. Length: Centimeters to Inches");
+                Console.WriteLine("2. Length: Inches to Centimeters");
+                Console.WriteLine("3. Weight: Kilograms to Pounds");
+                Console.WriteLine("4. Weight: Pounds to Kilograms");
+                Console.WriteLine("5. Temperature: Celsius to Fahrenheit");
+                Console.WriteLine("6. Temperature: Fahrenheit to Celsius");
+                Console.WriteLine("7. Exit");
+
+                // Get user input
+                Console.Write("Enter your choice (1-7): ");
+                string choice = Console.ReadLine();
+
+                double input, result; // Declare variables once
+
+                switch (choice)
+                {
+                    case "1": // Centimeters to Inches
+                        Console.Write("Enter length in centimeters: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = input / 2.54;
+                            Console.WriteLine($"{input} cm = {result:F2} inches");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        break;
+
+                    case "2": // Inches to Centimeters
+                        Console.Write("Enter length in inches: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = input * 2.54;
+                            Console.WriteLine($"{input} inches = {result:F2} cm");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        break;
+
+                    case "3": // Kilograms to Pounds
+                        Console.Write("Enter weight in kilograms: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = input * 2.20462;
+                            Console.WriteLine($"{input} kg = {result:F2} lbs");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        break;
+
+                    case "4": // Pounds to Kilograms
+                        Console.Write("Enter weight in pounds: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = input / 2.20462;
+                            Console.WriteLine($"{input} lbs = {result:F2} kg");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        break;
+
+                    case "5": // Celsius to Fahrenheit
+                        Console.Write("Enter temperature in Celsius: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = (input * 9 / 5) + 32;
+                            Console.WriteLine($"{input}°C = {result:F2}°F");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        break;
+
+                    case "6": // Fahrenheit to Celsius
+                        Console.Write("Enter temperature in Fahrenheit: ");
+                        if (double.TryParse(Console.ReadLine(), out input))
+                        {
+                            result = (input - 32) * 5 / 9;
+                            Console.WriteLine($"{input}°F = {result:F2}°C");
+                        }
+                        else
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        break;
+
+                    case "7": // Exit
+                        isRunning = false;
+                        Console.WriteLine("Thank you for using the Unit Converter. Goodbye!");
+                        break;
+
+                    default: // Invalid choice
+                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 7.");
+                        break;
+                }
+            }
+
+            // Keep the console open until the user presses a key
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
