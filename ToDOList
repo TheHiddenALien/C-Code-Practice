@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+
+namespace MyfirstProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create a List to store tasks
+            List<string> List = new List<string>();
+
+            // Create an instance of the TOdo class
+            TOdo Listtodo = new TOdo();
+
+            while (true) // Infinite loop
+            {
+                // Ask the user for input
+                Console.WriteLine("What would you like To-Do Today? (Type 'exit' to stop)");
+                string task = Console.ReadLine();
+
+                // Check if the user wants to exit
+                if (task.ToLower() == "exit")
+                {
+                    Console.WriteLine("Exiting the To-Do List. Goodbye!");
+                    break; // Exit the loop
+                }
+
+                // Add the task to the list
+                List.Add(task);
+
+                // Call the method to display the list
+                Listtodo.TOdoList(List);
+            }
+
+            Console.ReadKey(); // Keep console open
+        }
+    }
+
+    class TOdo
+    {
+        // Method to display the TO-DO list
+        public void TOdoList(List<string> List)
+        {
+            Console.WriteLine("\nCurrent List: " + List.Count);
+
+            foreach (string task in List)
+            {
+                Console.Write("* ");
+                Console.WriteLine(task);
+            }
+            Console.WriteLine(); // Add a new line for spacing
+        }
+    }
+}
