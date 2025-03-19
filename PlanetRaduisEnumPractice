@@ -1,0 +1,49 @@
+using System;
+
+namespace MyfirstProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Display available planets
+            Console.WriteLine("Available planets:");
+            foreach (string planetName in Enum.GetNames(typeof(PlanetRadius))) // Changed variable name
+            {
+                Console.WriteLine($"- {planetName}");
+            }
+
+            // Ask the user for input
+            Console.WriteLine("\nEnter the name of a planet to get its radius:");
+            string userInput = Console.ReadLine();
+
+            // Try to parse user input to a PlanetRadius enum
+            if (Enum.TryParse(userInput, true, out PlanetRadius selectedPlanet)) // Changed variable name
+            {
+                // Display the radius of the selected planet
+                Console.WriteLine($"{selectedPlanet} has a radius of {(int)selectedPlanet} km.");
+            }
+            else
+            {
+                // Handle invalid input
+                Console.WriteLine("Invalid planet name. Please enter a valid planet.");
+            }
+
+            // Keep the console open until the user presses a key
+            Console.ReadKey();
+        }
+    }
+
+    // Enum for planet radius in kilometers
+    enum PlanetRadius
+    {
+        Mercury = 2439,
+        Venus = 6051,
+        Earth = 6371,
+        Mars = 3389,
+        Jupiter = 69911,
+        Saturn = 58232,
+        Uranus = 25362,
+        Neptune = 24622
+    }
+}
