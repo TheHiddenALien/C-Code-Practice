@@ -1,0 +1,82 @@
+using System;
+
+namespace BasicBankingSystem
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double balance = 0; // Initialize balance to 0
+            bool isRunning = true;
+
+            Console.WriteLine("Welcome to the Basic Banking System!");
+
+            while (isRunning)
+            {
+                // Display menu options
+                Console.WriteLine("\nPlease select an option:");
+                Console.WriteLine("1. Deposit");
+                Console.WriteLine("2. Withdraw");
+                Console.WriteLine("3. Check Balance");
+                Console.WriteLine("4. Exit");
+
+                // Get user input
+                Console.Write("Enter your choice (1-4): ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1": // Deposit
+                        Console.Write("Enter the amount to deposit: ");
+                        if (double.TryParse(Console.ReadLine(), out double depositAmount) && depositAmount > 0)
+                        {
+                            balance += depositAmount;
+                            Console.WriteLine($"Successfully deposited {depositAmount:C}. New balance: {balance:C}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid amount. Please enter a positive number.");
+                        }
+                        break;
+
+                    case "2": // Withdraw
+                        Console.Write("Enter the amount to withdraw: ");
+                        if (double.TryParse(Console.ReadLine(), out double withdrawAmount) && withdrawAmount > 0)
+                        {
+                            if (withdrawAmount <= balance)
+                            {
+                                balance -= withdrawAmount;
+                                Console.WriteLine($"Successfully withdrew {withdrawAmount:C}. New balance: {balance:C}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Insufficient funds. Withdrawal amount exceeds balance.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid amount. Please enter a positive number.");
+                        }
+                        break;
+
+                    case "3": // Check Balance
+                        Console.WriteLine($"Your current balance is: {balance:C}");
+                        break;
+
+                    case "4": // Exit
+                        isRunning = false;
+                        Console.WriteLine("Thank you for using the Basic Banking System. Goodbye!");
+                        break;
+
+                    default: // Invalid choice
+                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 4.");
+                        break;
+                }
+            }
+
+            // Keep the console open until the user presses a key
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
